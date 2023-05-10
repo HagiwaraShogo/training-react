@@ -34,7 +34,7 @@ const PlayerItemStatus = () => {
     setCount(new Array(playerItems.length).fill(1));
   }
 
-  const changeAPI = async () => {
+  const updateAPI = async () => {
     const result = await fetchData();
     if (result == null) {
       setPlayerItems(dummy);
@@ -51,14 +51,14 @@ const PlayerItemStatus = () => {
     }
     try{
       await axios.post(`http://localhost:3000/playerItems/${playerId}/useItem`,body);
-      changeAPI();
+      updateAPI();
     } catch(e) {
       return null;
     }
   }
 
   const countChange = (e:any,itemId:number) => {
-    setCount(counts.map((input,index) => e.target.value))
+    setCount(counts.map((value,index) => (index === itemId - 1 ? e.target.value : value)))
   }
 
   return (
@@ -84,7 +84,7 @@ const PlayerItemStatus = () => {
               <td>{d.heal}</td>
               <td>{d.price}</td>
               <td>{d.count}</td>
-              <td><input type="number" min={1} max={d.count}
+              <td><input type="number" value={counts[d.itemId - 1]} min={1} max={d.count}
                 onChange={(e) => countChange(e,d.itemId)}
               /></td>
               <td><button onClick={() => use(d.itemId)}>使う</button></td>
