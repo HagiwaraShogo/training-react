@@ -11,7 +11,6 @@ const ItemGacha = () => {
     totalCount:0
   }]
   const [itemGach, setItemGach] = useState<ItemGach[]>([]);
-  let menoy: number;
 
   const gacha = async (count:number) => {
     const playerId = localStorage.getItem("playerId");
