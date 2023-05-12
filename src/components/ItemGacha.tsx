@@ -36,7 +36,7 @@ const ItemGacha = () => {
     <div>
       <h2 style={{ textAlign: "center" }}>ItemGacha</h2>
       <p><td><input type="number" value={counts} min={1} max={10}
-       onChange={(setEvent) => countChange(setEvent)}
+       onChange={(event) => countChange(event)}
        /></td></p>
       <td><button onClick={gacha}>{counts}回ガチャ</button></td>
       <table>
