@@ -11,7 +11,7 @@ const ItemGacha = () => {
     totalCount:0
   }]
   const [itemGach, setItemGach] = useState<ItemGach[]>([]);
-  const [counts,setCount] = useState(0);
+  const [counts,setCount] = useState(1);
 
   const gacha = async () => {
     const playerId = localStorage.getItem("playerId");
@@ -28,15 +28,15 @@ const ItemGacha = () => {
     }
   }
 
-  const countChange = (e:any) => {
-    setCount(e.target.value)
+  const countChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCount(parseInt(event.target.value))
   }
 
   return (
     <div>
       <h2 style={{ textAlign: "center" }}>ItemGacha</h2>
       <p><td><input type="number" value={counts} min={1} max={10}
-       onChange={(e) => countChange(e)}
+       onChange={(setEvent) => countChange(setEvent)}
        /></td></p>
       <td><button onClick={gacha}>{counts}回ガチャ</button></td>
       <table>
